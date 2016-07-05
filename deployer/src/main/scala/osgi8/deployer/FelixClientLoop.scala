@@ -24,7 +24,7 @@ object FelixClientLoop {
     id: String = "1",
     host: String = "localhost",
     port: Int = 9977,
-    app: String = "starfelix"
+    app: String = "osgitest"
   ) {
 
     implicit val actorSystem = ActorSystem("test", ConfigFactory.parseString(
