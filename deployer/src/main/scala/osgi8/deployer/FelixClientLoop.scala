@@ -58,6 +58,7 @@ object FelixClientLoop {
           allowTruncation = true
         ))
       .map(_.utf8String.trim)
+      .filter(!_.isEmpty)
       .map({
         cmd =>
           HttpRequest(

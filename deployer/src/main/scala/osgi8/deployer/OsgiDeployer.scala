@@ -1,4 +1,4 @@
-package emsa.felix.deploy
+package osgi8.deployer
 
 import java.io.File
 import java.nio.file.{Path, Paths}
@@ -304,14 +304,15 @@ object OsgiDeployer {
 
 
   def getBundle(bundle: Bundle)(action: File => Unit) = {
-    runMaven(
-      pom(
-        Poms.copyDep(bundle, "dep.jar")
-      ),
-      "package"
-    ) { dir =>
-      action(dir / "target" / "dep.jar")
-    }
+    getBundles((bundle, action))
+//    runMaven(
+//      pom(
+//        Poms.copyDep(bundle, "dep.jar")
+//      ),
+//      "package"
+//    ) { dir =>
+//      action(dir / "target" / "dep.jar")
+//    }
 
   }
 
