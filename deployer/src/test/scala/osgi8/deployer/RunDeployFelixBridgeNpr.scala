@@ -8,9 +8,9 @@ import akka.http.scaladsl.model.Uri.Query
 import akka.http.scaladsl.model._
 import akka.http.scaladsl.unmarshalling.Unmarshal
 import akka.stream.{ActorMaterializer, Materializer}
-import akka.stream.scaladsl.{FileIO, StreamConverters}
+import akka.stream.scaladsl.{FileIO, Sink, StreamConverters}
 
-import scala.concurrent.Await
+import scala.concurrent.{Await, Future}
 import scala.concurrent.duration.Duration
 
 /**
@@ -23,6 +23,11 @@ object RunDeployFelixBridgeNpr {
     val target =
       Uri(s"http://localhost:7002/npr-filter-tais-npr")
 
+    run(target)
+  }
+
+  def run(target: Uri) = {
+
     implicit val actorSystem = ActorSystem()
     import actorSystem.dispatcher
     implicit val materializer = ActorMaterializer()
@@ -31,6 +36,11 @@ object RunDeployFelixBridgeNpr {
       Bundle(
         "osgi6",
         "osgi6-api-bundle",
+        "1.0.2-SNAPSHOT"
+      ),
+      Bundle(
+        "osgi6",
+        "osgi6-logging",
         "1.0.2-SNAPSHOT"
       ),
       Bundle(
@@ -71,8 +81,14 @@ object RunDeployFelixBridgeNpr {
               for {
                 _ <- upload(
                   file,
-                  Uri(s"http://localhost:7002/npr-filter-tais-npr/repo/${bundle.artifact}.jar")
+                  target.withPath(
+                    target.path / "repo" / s"${bundle.artifact}.jar"
+                  )
                 )
+                _ <- {
+                  Thread.sleep(1000)
+                  Future.successful(())
+                }
                 _ <- command(
                   target,
                   s"start file:/wl_domains/imdate/imdate-ext/data/npr-filter-tais-npr/repo/${bundle.artifact}.jar"
@@ -80,6 +96,8 @@ object RunDeployFelixBridgeNpr {
               } yield (),
               Duration.Inf
             )
+
+            Thread.sleep(2000)
           }
         )
       }):_*
@@ -111,9 +129,10 @@ object RunDeployFelixBridgeNpr {
           FileIO.fromPath(what.toPath)
         )
       )
-    ).map(r => {
+    ).flatMap(r => {
       println(r)
       require(r.status.isSuccess())
+      r.entity.dataBytes.runWith(Sink.ignore)
     })
   }
 

@@ -7,7 +7,7 @@ import akka.http.scaladsl.Http
 import akka.http.scaladsl.model.Uri.Query
 import akka.http.scaladsl.model._
 import akka.http.scaladsl.unmarshalling.Unmarshal
-import akka.stream.scaladsl.FileIO
+import akka.stream.scaladsl.{FileIO, Sink}
 import akka.stream.{ActorMaterializer, Materializer}
 
 import scala.concurrent.Await
@@ -22,12 +22,20 @@ object RunDeployOsgiNpr {
 
     val target =
       Uri(s"http://localhost:7002/npr-filter-tais-npr")
+    run(target)
+  }
 
+  def run(target: Uri) = {
     implicit val actorSystem = ActorSystem()
     import actorSystem.dispatcher
     implicit val materializer = ActorMaterializer()
 
     val bundles = Seq(
+      Bundle(
+        "org.reactivestreams",
+        "reactive-streams",
+        "1.0.0"
+      ),
       Bundle(
         "emsa",
         "npr-filter-api",
@@ -47,11 +55,12 @@ object RunDeployOsgiNpr {
         (
           bundle,
           (file:File) => {
+            println(file.length())
             Await.result(
               for {
                 _ <- upload(
                   file,
-                  Uri(s"http://localhost:7002/npr-filter-tais-npr/deploy")
+                  target.withPath(target.path / "deploy")
                 )
               } yield (),
               Duration.Inf
@@ -80,9 +89,10 @@ object RunDeployOsgiNpr {
           FileIO.fromPath(what.toPath)
         )
       )
-    ).map(r => {
+    ).flatMap(r => {
       println(r)
       require(r.status.isSuccess())
+      r.entity.dataBytes.runWith(Sink.ignore)
     })
   }
 
