@@ -339,11 +339,13 @@ object OsgiDeployer {
 case class Bundle(
   group: String,
   artifact: String,
-  version: String
+  version: String,
+  classifier : String = "bundle"
 ) {
   def toXml : NodeSeq =
     <groupId>{group}</groupId>
     <artifactId>{artifact}</artifactId>
     <version>{version}</version>
+    <classifier>{classifier}</classifier>
 
 }

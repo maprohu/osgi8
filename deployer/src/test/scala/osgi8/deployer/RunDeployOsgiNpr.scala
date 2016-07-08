@@ -34,7 +34,8 @@ object RunDeployOsgiNpr {
       Bundle(
         "org.reactivestreams",
         "reactive-streams",
-        "1.0.0"
+        "1.0.0",
+        ""
       ),
       Bundle(
         "emsa",
