@@ -55,7 +55,7 @@ object RunDeployFelixBridgeNpr {
       ),
       Bundle(
         "osgi6",
-        "osgi6-string-bundle",
+        "osgi6-strict-bundle",
         "1.0.2-SNAPSHOT"
       ),
       Bundle(
