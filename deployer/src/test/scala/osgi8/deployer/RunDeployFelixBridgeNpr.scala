@@ -35,7 +35,7 @@ object RunDeployFelixBridgeNpr {
     val bundles = Seq(
       Bundle(
         "osgi6",
-        "osgi6-api-bundle",
+        "osgi6-api",
         "1.0.2-SNAPSHOT"
       ),
       Bundle(
@@ -50,7 +50,12 @@ object RunDeployFelixBridgeNpr {
       ),
       Bundle(
         "osgi6",
-        "osgi6-multi-bundle",
+        "osgi6-strict-api",
+        "1.0.2-SNAPSHOT"
+      ),
+      Bundle(
+        "osgi6",
+        "osgi6-string-bundle",
         "1.0.2-SNAPSHOT"
       ),
       Bundle(
