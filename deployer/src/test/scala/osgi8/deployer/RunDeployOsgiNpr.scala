@@ -61,7 +61,7 @@ object RunDeployOsgiNpr {
               for {
                 _ <- upload(
                   file,
-                  target.withPath(target.path / "deploy")
+                  target.withPath(target.path / "_admin" / "deploy")
                 )
               } yield (),
               Duration.Inf

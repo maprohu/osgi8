@@ -26,6 +26,8 @@ object RunDeployFelixBridgeNpr {
     run(target)
   }
 
+  val osgi6Version = "1.0.3-SNAPSHOT"
+
   def run(target: Uri) = {
 
     implicit val actorSystem = ActorSystem()
@@ -36,37 +38,37 @@ object RunDeployFelixBridgeNpr {
       Bundle(
         "osgi6",
         "osgi6-api",
-        "1.0.2-SNAPSHOT"
+        osgi6Version
       ),
       Bundle(
         "osgi6",
         "osgi6-logging",
-        "1.0.2-SNAPSHOT"
+        osgi6Version
       ),
       Bundle(
         "osgi6",
         "osgi6-multi-api",
-        "1.0.2-SNAPSHOT"
+        osgi6Version
       ),
       Bundle(
         "osgi6",
         "osgi6-strict-api",
-        "1.0.2-SNAPSHOT"
+        osgi6Version
       ),
       Bundle(
         "osgi6",
         "osgi6-strict-bundle",
-        "1.0.2-SNAPSHOT"
+        osgi6Version
       ),
       Bundle(
         "osgi6",
         "osgi6-deploy",
-        "1.0.2-SNAPSHOT"
+        osgi6Version
       ),
       Bundle(
         "osgi6",
         "osgi6-command",
-        "1.0.2-SNAPSHOT"
+        osgi6Version
       ),
       Bundle(
         "emsa6",
