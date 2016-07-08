@@ -334,6 +334,30 @@ object OsgiDeployer {
 
   }
 
+  def getBundlesAll(bundles: Seq[Bundle])(fn: Seq[File] => Unit) = {
+    val bundleFiles =
+      bundles.zipWithIndex.map({ case (bnd, idx) =>
+        (bnd, s"jar${idx}")
+      })
+
+    runMaven(
+      pom(
+        Poms.copyDeps(
+          bundleFiles:_*
+        )
+      ),
+      "package"
+    ) { dir =>
+      fn(
+        bundleFiles.map({
+          case (_ , file) =>
+            dir / "target" / file
+        })
+      )
+    }
+
+  }
+
 }
 
 case class Bundle(
