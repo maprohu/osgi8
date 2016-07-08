@@ -163,6 +163,23 @@ object RunDeployer extends Urls with Bundles {
 
   }
 
+  def refresh(target: Uri)(implicit
+    actorSystem: ActorSystem,
+    materializer: Materializer
+  ) : Future[HttpResponse] = {
+
+    request(
+      HttpRequest(
+        method = HttpMethods.PUT,
+        uri = target
+          .withPath(
+            target.path / "_admin" / "refresh"
+          )
+      )
+    )
+
+  }
+
   def request(req: HttpRequest)(implicit
     actorSystem: ActorSystem,
     materializer: Materializer
