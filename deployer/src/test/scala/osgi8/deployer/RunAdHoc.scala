@@ -10,7 +10,7 @@ object RunAdHoc {
   def main(args: Array[String]) {
 
     perform { r => import r._
-      uninstallBundles(tomcatNpr, 1L to 9 )
+      uninstallBundles(tomcatNpr, 1L to 8 )
 //      uninstallBundles(tomcatNpr, 11L to 20L )
 //      installBundles(tomcatNpr, osgi6 ++ npr)
 
