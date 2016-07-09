@@ -18,9 +18,9 @@ object RunStress {
         _ <- perform { r => import r._
           uninstallBundles(tomcatNpr, count*10+1L to count*10+10 )
         }
-        _ <- perform { r => import r._
-          refresh(tomcatNpr)
-        }
+//        _ <- perform { r => import r._
+//          refresh(tomcatNpr)
+//        }
         _ <- perform { r => import r._
           installBundles(tomcatNpr, osgi6 ++ npr)
         }
@@ -39,7 +39,7 @@ object RunStress {
 
     }
 
-    Await.result(deploy(5), Duration.Inf)
+    Await.result(deploy(0), Duration.Inf)
 
 
 
