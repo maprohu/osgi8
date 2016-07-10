@@ -9,43 +9,66 @@ trait Bundles {
   private val osgi6Version = "1.0.3-SNAPSHOT"
   private val nprVersion = "1.0.1-SNAPSHOT"
 
-  val osgi6 = Seq(
+
+  val admin =
     Bundle(
       "osgi6",
-      "osgi6-console",
+      "osgi6-admin",
       osgi6Version
-    ),
-    Bundle(
-      "osgi6",
-      "osgi6-logging",
-      osgi6Version
-    ),
+    )
+
+  val multiApi =
     Bundle(
       "osgi6",
       "osgi6-multi-api",
       osgi6Version
-    ),
+    )
+
+  val multiBundle =
+    Bundle(
+      "osgi6",
+      "osgi6-multi-bundle",
+      osgi6Version
+    )
+
+  val strictApi =
     Bundle(
       "osgi6",
       "osgi6-strict-api",
       osgi6Version
-    ),
+    )
+
+  val logging =
     Bundle(
       "osgi6",
-      "osgi6-strict-bundle",
-      osgi6Version
-    ),
-    Bundle(
-      "osgi6",
-      "osgi6-deploy",
-      osgi6Version
-    ),
-    Bundle(
-      "osgi6",
-      "osgi6-command",
+      "osgi6-logging",
       osgi6Version
     )
+
+  val strictMulti =
+    Bundle(
+      "osgi6",
+      "osgi6-strict-multi-bundle",
+      osgi6Version
+    )
+
+  val jolokia =
+    Bundle(
+      "osgi6",
+      "osgi6-jolokia",
+      osgi6Version
+    )
+
+  val osgi6 = Seq(
+    logging,
+    multiApi,
+    multiBundle,
+    strictApi,
+    strictMulti,
+    jolokia,
+    admin
   )
+
 
   val reactiveStreams =
       Bundle(
