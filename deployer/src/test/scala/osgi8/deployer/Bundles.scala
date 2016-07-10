@@ -47,24 +47,30 @@ trait Bundles {
     )
   )
 
-  val npr = Seq(
+  val reactiveStreams =
       Bundle(
         "org.reactivestreams",
         "reactive-streams",
         "1.0.0",
         ""
-      ),
+      )
+  val nprApi =
       Bundle(
         "emsa",
         "npr-filter-api",
         nprVersion
-      ),
+      )
+  val nprCore =
       Bundle(
         "emsa",
         "npr-filter-core",
         nprVersion
       )
-    )
+  val npr = Seq(
+    reactiveStreams,
+    nprApi,
+    nprCore
+  )
 
 
 }
