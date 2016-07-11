@@ -8,6 +8,7 @@ trait Bundles {
 
   private val osgi6Version = "1.0.3-SNAPSHOT"
   private val nprVersion = "1.0.1-SNAPSHOT"
+  private val ftxVersion = "1.0.0-SNAPSHOT"
 
 
   val admin =
@@ -94,6 +95,13 @@ trait Bundles {
     nprApi,
     nprCore
   )
+
+  val ftxOvr =
+    Bundle(
+      "emsa",
+      "frontex-ovr",
+      ftxVersion
+    )
 
 
 }

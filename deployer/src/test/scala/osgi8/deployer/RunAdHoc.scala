@@ -19,10 +19,11 @@ object RunAdHoc {
 //      uninstallBundles(tomcatNpr, 11L to 20L )
 //      installBundles(tomcatNpr, osgi6 ++ npr)
 
-//      uninstallBundles(testNpr, 81L to 90 )
-//      installBundles(testNpr, osgi6 ++ npr)
+//      uninstallBundles(testNpr, 105L to 106 )
+//      installBundles(testNpr, Seq( nprApi, nprCore ) )
 
-//      uninstallBundles(pp56Npr, 53L to 62)
+//      uninstallBundles(pp56Npr, 77L to 78 )
+//      installBundles(pp56Npr, Seq( nprApi, nprCore ) )
 //      installBundles(pp56Npr, osgi6 ++ npr)
 
 
@@ -37,7 +38,10 @@ object RunAdHoc {
 //      installBundles(testNpr, Seq( multiApi, multiBundle, admin ) )
 //      installBundles(pp56Npr, Seq( multiApi, multiBundle, admin ) )
 //      installBundles(testNpr, Seq( admin ) )
-      installBundles(pp56Npr, Seq( jolokia ) )
+//      installBundles(pp56Npr, Seq( jolokia ) )
+
+//      uninstallBundles(testFtx, Seq(9L))
+//      installBundles(testFtx, Seq( ftxOvr ) )
     }
 
 
