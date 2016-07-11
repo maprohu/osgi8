@@ -11,9 +11,10 @@ object RunAdHoc {
 
     perform { r => import r._
 //      uninstallBundles(tomcatNpr, Seq(1L))
-//      uninstallBundles(tomcatNpr, 8L to 8 )
+      uninstallBundles(tomcatNpr, 9L to 10 )
 //      installBundles(tomcatNpr, Seq(nprCore))
 //      installBundles(tomcatNpr, npr)
+//      installBundles(tomcatNpr, Seq( nprApi, nprCore ) )
 
 //      uninstallBundles(tomcatNpr, 1L to 8 )
 //      uninstallBundles(tomcatNpr, 11L to 20L )
