@@ -163,6 +163,25 @@ object RunDeployer extends Urls with Bundles {
 
   }
 
+  def putFile(file: File, target: Uri)(implicit
+    actorSystem: ActorSystem,
+    materializer: Materializer
+  ) : Future[HttpResponse] = {
+
+    request(
+      HttpRequest(
+        method = HttpMethods.PUT,
+        uri = target,
+        entity =
+          HttpEntity(
+            ContentTypes.`application/octet-stream`,
+            FileIO.fromPath(file.toPath)
+          )
+      )
+    )
+
+  }
+
   def refresh(target: Uri)(implicit
     actorSystem: ActorSystem,
     materializer: Materializer
