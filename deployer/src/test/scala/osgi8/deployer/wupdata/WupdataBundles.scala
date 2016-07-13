@@ -23,4 +23,18 @@ trait WupdataBundles {
       wupdataVersion
     )
 
+  val wupdataContextBridge =
+    Bundle(
+      "emsa",
+      "wupdata-context-bridge",
+      wupdataVersion
+    )
+
+  val wupdataMultiBridge =
+    Bundle(
+      "emsa",
+      "wupdata-multi-bridge",
+      wupdataVersion
+    )
+
 }

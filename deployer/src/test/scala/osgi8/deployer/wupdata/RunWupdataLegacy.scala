@@ -23,6 +23,7 @@ object RunWupdataLegacy extends Bundles /*with WupdataBundles*/ with WupdataUrls
       OsgiDeployer.getBundlesAll(
         Seq(
           multiApi,
+          wupdataContextBridge,
           admin,
           wupdataLegacy
         )
