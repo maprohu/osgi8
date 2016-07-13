@@ -103,5 +103,11 @@ trait Bundles {
       ftxVersion
     )
 
+  val jms11 =
+    Bundle(
+      "osgi6",
+      "osgi6-fragment-jms-1.1",
+      osgi6Version
+    )
 
 }
