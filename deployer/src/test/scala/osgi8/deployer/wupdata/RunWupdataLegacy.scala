@@ -8,12 +8,12 @@ import scala.concurrent.duration.Duration
 /**
   * Created by martonpapp on 12/07/16.
   */
-object RunWupdataLegacy extends Bundles with WupdataBundles with WupdataUrls {
+object RunWupdataLegacy extends Bundles /*with WupdataBundles*/ with WupdataUrls {
 
 
   import osgi8.deployer.RunDeployer._
 
-  val target = wupdataLocal
+  val target = wupdataLocalRoot
 
 
   def main(args: Array[String]) {
@@ -24,7 +24,7 @@ object RunWupdataLegacy extends Bundles with WupdataBundles with WupdataUrls {
         Seq(
           multiApi,
           admin,
-          legacy
+          wupdataLegacy
         )
       ) { files =>
         Await.result(

@@ -21,9 +21,13 @@ object RunAdHoc {
 //      installBundles(tomcatNpr, osgi6 ++ npr)
 
 //      uninstallBundles(testNpr, 11L to 12 )
-      installBundles(testNpr, Seq( nprApi, nprCore ) )
+//      installBundles(testNpr, Seq( nprApi, nprCore ) )
 
-//      uninstallBundles(pp56Npr, 77L to 78 )
+//      uninstallBundles(wupdataLocal, 1L to 65 )
+//      installBundles(wupdataLocal, Seq( logging, wupdataCore ) )
+      uninstallBundles(wupdataLocal, (1L to 65) diff  Seq(53L) )
+
+//      uninstallBundles(wupdataLocal, 1L to 65 )
 //      installBundles(pp56Npr, Seq( nprApi, nprCore ) )
 //      installBundles(pp56Npr, osgi6 ++ npr)
 

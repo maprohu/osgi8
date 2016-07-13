@@ -7,6 +7,7 @@ import akka.http.scaladsl.model.Uri
   */
 trait WupdataUrls {
 
-  val wupdataLocal = Uri("http://localhost:7002/wupdata")
+  val wupdataLocalRoot = Uri("http://localhost:7002/wupdata")
+  val wupdataLocal = wupdataLocalRoot.withPath(wupdataLocalRoot.path / "service")
 
 }

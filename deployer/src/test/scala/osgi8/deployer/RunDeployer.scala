@@ -8,6 +8,7 @@ import akka.http.scaladsl.model.Uri.Query
 import akka.http.scaladsl.model._
 import akka.stream.scaladsl.FileIO
 import akka.stream.{ActorMaterializer, Materializer}
+import osgi8.deployer.wupdata.{WupdataBundles, WupdataUrls}
 
 import scala.concurrent.{Await, ExecutionContext, Future}
 import scala.concurrent.duration._
@@ -15,7 +16,7 @@ import scala.concurrent.duration._
 /**
   * Created by pappmar on 08/07/2016.
   */
-object RunDeployer extends Urls with Bundles {
+object RunDeployer extends Urls with Bundles with WupdataUrls with WupdataBundles {
 
   def main(args: Array[String]) {
     run(
