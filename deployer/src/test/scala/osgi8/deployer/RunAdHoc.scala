@@ -28,12 +28,16 @@ object RunAdHoc {
 //      installBundles(wupdataLocal, Seq( logging, wupdataCore ) )
 
 //      installBundles(wupdataLocal, Seq( wupdataMultiBridge ) )
-      installBundles(wupdataLocal, Seq( jms11 ) )
+//      installBundles(wupdataLocal, Seq( jms11 ) )
 
 //      uninstallBundles(wupdataLocal, (1L to 65) ++ Seq(69L) )
 
 //      uninstallBundles(wupdataLocal, 1L to 65 )
 //      installBundles(pp56Npr, Seq( nprApi, nprCore ) )
+
+      installBundles(pp56Npr, Seq( nprCore ) )
+//      uninstallBundles(pp56Npr, Seq( 11L ) )
+
 //      installBundles(pp56Npr, osgi6 ++ npr)
 
 
