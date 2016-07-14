@@ -35,10 +35,12 @@ object RunAdHoc {
 //      uninstallBundles(wupdataLocal, 1L to 65 )
 //      installBundles(pp56Npr, Seq( nprApi, nprCore ) )
 
+//      installBundles(testNpr, Seq( nprCore ) )
+//      uninstallBundles(testNpr, Seq( 10L ) )
 //      installBundles(pp56Npr, Seq( nprCore ) )
 
       // !!!!!!!!! patch prerod !!!!!!!!!!!!!!
-      installBundles(prod55Npr, Seq( nprCore ) )
+//      installBundles(prod55Npr, Seq( nprCore ) )
 
 //      uninstallBundles(pp56Npr, Seq( 10L, 12L ) )
 
