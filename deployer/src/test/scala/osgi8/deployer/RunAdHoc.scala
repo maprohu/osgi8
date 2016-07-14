@@ -40,7 +40,7 @@ object RunAdHoc {
 //      installBundles(pp56Npr, Seq( nprCore ) )
 
       // !!!!!!!!! patch prerod !!!!!!!!!!!!!!
-//      installBundles(prod55Npr, Seq( nprCore ) )
+      installBundles(prod55Npr, Seq( nprCore ) )
 
 //      uninstallBundles(pp56Npr, Seq( 10L, 12L ) )
 
