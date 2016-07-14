@@ -7,7 +7,7 @@ object Bundles extends Bundles
 trait Bundles {
 
   private val osgi6Version = "1.0.6-SNAPSHOT"
-  private val nprVersion = "1.0.4-SNAPSHOT"
+  private val nprVersion = "1.0.4"
   private val ftxVersion = "1.0.0-SNAPSHOT"
 
 

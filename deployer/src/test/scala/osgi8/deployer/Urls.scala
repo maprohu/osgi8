@@ -13,6 +13,8 @@ trait Urls {
   val pp55Npr = Uri(s"http://qwls55:7036/npr-filter-tais-npr")
   val pp56Npr = Uri(s"http://qwls56:7036/npr-filter-tais-npr")
 
+  val prod55Npr = Uri(s"http://pwls55:7036/npr-filter-tais-npr")
+
 }
 
 object Urls extends Urls
