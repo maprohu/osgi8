@@ -9,6 +9,7 @@ trait Bundles {
   private val osgi6Version = "1.0.6-SNAPSHOT"
   private val nprVersion = "1.0.4"
   private val ftxVersion = "1.0.0-SNAPSHOT"
+  private val vdm2cdfVersion = "1.0.0-SNAPSHOT"
 
 
   val admin =
@@ -108,6 +109,13 @@ trait Bundles {
       "osgi6",
       "osgi6-fragment-jms-1.1",
       osgi6Version
+    )
+
+  val vdm2cdf =
+    Bundle(
+      "emsa",
+      "vdm2cdf-core",
+      vdm2cdfVersion
     )
 
 }

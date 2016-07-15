@@ -10,6 +10,7 @@ trait Urls {
   val tomcatNpr = Uri(s"http://localhost:9977/npr-filter-tais-npr")
   val testNpr = Uri(s"http://twls55:7030/npr-filter-tais-npr")
   val testFtx = Uri(s"http://twls57:7037/ftx-core")
+  val testVdm = Uri(s"http://twls69:7011/vdm2cdf")
   val pp55Npr = Uri(s"http://qwls55:7036/npr-filter-tais-npr")
   val pp56Npr = Uri(s"http://qwls56:7036/npr-filter-tais-npr")
 
