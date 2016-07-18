@@ -13,16 +13,16 @@ import scala.collection.JavaConversions._
 object RunCheckout {
 
   def main(args: Array[String]): Unit = {
-    run(
-      "npr-filter-osgi",
-      "1.0.2",
-      "npr-filter-pom"
-    )
 //    run(
-//      "osgi6",
-//      "1.0.4",
-//      "osgi6-pom"
+//      "npr-filter-osgi",
+//      "1.0.2",
+//      "npr-filter-pom"
 //    )
+    run(
+      "osgi6",
+      "1.0.6",
+      "osgi6-pom"
+    )
 //    run(
 //      "scala-ext",
 //      "1.0.2"
