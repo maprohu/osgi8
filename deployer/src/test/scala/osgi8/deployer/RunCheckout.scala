@@ -18,11 +18,37 @@ object RunCheckout {
 //      "1.0.2",
 //      "npr-filter-pom"
 //    )
+//    runTag(
+//      "../dev/wsij/frontex-wms",
+//      "0.20.0"
+//    )
+//    run(
+//      "../dev/wsij/frontex-cor-parser",
+//      "1.0"
+//    )
+//    run(
+//      "../dev/wsij/frontex-cdf-parser",
+//      "1.0.3"
+//    )
     run(
-      "osgi6",
-      "1.0.6",
-      "osgi6-pom"
+      "../dev/wsij/frontex-csn-parser",
+      "1.0"
     )
+//    run(
+//      "../dev/wsij/common-libs",
+//      "0.0.15",
+//      "common-libs"
+//    )
+//    run(
+//      "../dev/wsij/frontex-parent",
+//      "0.0.1",
+//      "frontex-parent"
+//    )
+//    run(
+//      "osgi6",
+//      "1.0.6",
+//      "osgi6-pom"
+//    )
 //    run(
 //      "scala-ext",
 //      "1.0.2"
@@ -36,7 +62,7 @@ object RunCheckout {
     run(
       dir,
       version,
-      dir
+      new File(dir).name
     )
   }
 
@@ -44,6 +70,17 @@ object RunCheckout {
     dir: String,
     version: String,
     tagBase: String
+  ) : Unit = {
+    runTag(
+      dir,
+      s"${tagBase}-${version}"
+    )
+
+  }
+
+  def runTag(
+    dir: String,
+    tag: String
   ) : Unit = {
     val projectDir = new File("..") / dir
 
@@ -53,7 +90,7 @@ object RunCheckout {
     val props = new java.util.Properties()
     props.putAll(
       Map(
-        "scmVersion" -> s"$tagBase-$version",
+        "scmVersion" -> tag,
         "scmVersionType" -> "tag"
       )
     )
