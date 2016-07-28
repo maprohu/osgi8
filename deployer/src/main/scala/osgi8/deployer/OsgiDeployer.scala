@@ -364,12 +364,14 @@ case class Bundle(
   group: String,
   artifact: String,
   version: String,
-  classifier : String = "bundle"
+  classifier : String = "bundle",
+  `type` : String = "jar"
 ) {
   def toXml : NodeSeq =
     <groupId>{group}</groupId>
     <artifactId>{artifact}</artifactId>
     <version>{version}</version>
     <classifier>{classifier}</classifier>
+    <type>{`type`}</type>
 
 }
