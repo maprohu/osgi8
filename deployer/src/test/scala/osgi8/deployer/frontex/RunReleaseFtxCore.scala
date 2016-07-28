@@ -14,8 +14,8 @@ import scala.xml.XML
   */
 object RunReleaseFtxCore {
 
-  val osgi6Version = "1.0.7-SNAPSHOT"
-  val frontexCoreVersion = "1.0.0-SNAPSHOT"
+  val osgi6Version = "1.0.7"
+  val frontexCoreVersion = "1.0.0"
 
   def main(args: Array[String]) {
 
@@ -34,7 +34,7 @@ object RunReleaseFtxCore {
 
         <groupId>emsa</groupId>
         <artifactId>frontex-build</artifactId>
-        <version>{frontexCoreVersion}</version>
+        <version>1.0.0</version>
         <packaging>pom</packaging>
 
         <modules>
