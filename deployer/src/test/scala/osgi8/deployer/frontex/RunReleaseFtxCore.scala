@@ -14,8 +14,9 @@ import scala.xml.XML
   */
 object RunReleaseFtxCore {
 
-  val osgi6Version = "1.0.7"
-  val frontexCoreVersion = "1.0.0"
+  val scalaExtVersion = "1.0.3"
+  val osgi6Version = "1.0.8-SNAPSHOT"
+  val frontexCoreVersion = "1.0.1-SNAPSHOT"
 
   def main(args: Array[String]) {
 
@@ -23,6 +24,7 @@ object RunReleaseFtxCore {
     IO.delete(targetDir)
     targetDir.mkdirs()
 
+    val extDirName = "ext"
     val libsDirName = "libs"
     val appDirName = "app"
 
@@ -34,10 +36,11 @@ object RunReleaseFtxCore {
 
         <groupId>emsa</groupId>
         <artifactId>frontex-build</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
         <packaging>pom</packaging>
 
         <modules>
+          <module>{extDirName}</module>
           <module>{libsDirName}</module>
           <module>{appDirName}</module>
         </modules>
@@ -70,6 +73,15 @@ object RunReleaseFtxCore {
         "zip"
       )
 
+    val scalaExtBundle =
+      Bundle(
+        "maprohu",
+        "scala-ext",
+        scalaExtVersion,
+        "project",
+        "zip"
+      )
+
     def item(bundle: Bundle, dir: String) : (Bundle, File => Unit) = {
       bundle -> { f =>
         IO.unzip(f, targetDir)
@@ -81,6 +93,7 @@ object RunReleaseFtxCore {
     perform { r => import r._
 
       OsgiDeployer.getBundles(
+        item(scalaExtBundle, extDirName),
         item(osgi6Bundle, libsDirName),
         item(ftxBundle, appDirName)
       )
