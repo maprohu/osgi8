@@ -15,8 +15,8 @@ import scala.xml.XML
 object RunReleaseFtxCore {
 
   val scalaExtVersion = "1.0.3"
-  val osgi6Version = "1.0.8-SNAPSHOT"
-  val frontexCoreVersion = "1.0.1-SNAPSHOT"
+  val osgi6Version = "1.0.8"
+  val frontexCoreVersion = "1.0.1"
 
   def main(args: Array[String]) {
 
