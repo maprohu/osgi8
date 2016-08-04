@@ -27,7 +27,16 @@ object RunAdHoc {
 
 //      installBundles(wupdataLocal, Seq( logging, wupdataCore ) )
 
-      installBundles(wupdataLocal, Seq( wupdataMultiBridge ) )
+      installBundles(wupdataLocal, Seq( h2gis, wupdataGeoserver ) )
+
+
+
+      // fixing
+//      uninstallBundles(wupdataLocal, Seq( 77L ) )
+//      installBundles(wupdataLocal, Seq( wupdataCore ) )
+
+//      installBundles(wupdataLocal, Seq( wupdataContextBridge ) )
+//      installBundles(wupdataLocal, Seq( wupdataMultiBridge ) )
 //      installBundles(wupdataLocal, Seq( jms11 ) )
 
 //      uninstallBundles(wupdataLocal, (1L to 65) ++ Seq(69L) )

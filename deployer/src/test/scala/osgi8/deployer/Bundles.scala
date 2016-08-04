@@ -61,6 +61,13 @@ trait Bundles {
       osgi6Version
     )
 
+  val h2gis =
+    Bundle(
+      "osgi6",
+      "osgi6-h2gis",
+      osgi6Version
+    )
+
   val osgi6 = Seq(
     logging,
     multiApi,

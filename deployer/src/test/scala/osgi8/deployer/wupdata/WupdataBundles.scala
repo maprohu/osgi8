@@ -37,4 +37,11 @@ trait WupdataBundles {
       wupdataVersion
     )
 
+  val wupdataGeoserver =
+    Bundle(
+      "emsa",
+      "wupdata-geoserver",
+      wupdataVersion
+    )
+
 }
