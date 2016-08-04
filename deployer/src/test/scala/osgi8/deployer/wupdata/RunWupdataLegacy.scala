@@ -56,6 +56,7 @@ object RunWupdataLegacy extends Bundles /*with WupdataBundles*/ with WupdataUrls
   file:/wl_domains/imdate/imdate-ext/data/wupdata-store/system/jar0
   file:/wl_domains/imdate/imdate-ext/data/wupdata-store/system/jar1
   file:/wl_domains/imdate/imdate-ext/data/wupdata-store/system/jar2
+  file:/wl_domains/imdate/imdate-ext/data/wupdata-store/system/jar3
 
   http://localhost:7002/wupdata/hawtio/jolokia/exec/osgi.core%3Atype%3Dframework%2Cversion%3D1.7%2Cframework%3Dorg.apache.felix.framework%2Cuuid%3Dc1be870a-17c7-4f34-87a8-5baa1f6a56f9/installBundle(java.lang.String)/file%3A!%2Fwl_domains!%2Fimdate!%2Fimdate-ext!%2Fdata!%2Fwupdata-store!%2Fsystem!%2Fjar0?maxDepth=6&maxCollectionSize=500&ignoreErrors=true&canonicalNaming=false
 

@@ -27,7 +27,7 @@ object RunAdHoc {
 
 //      installBundles(wupdataLocal, Seq( logging, wupdataCore ) )
 
-//      installBundles(wupdataLocal, Seq( wupdataMultiBridge ) )
+      installBundles(wupdataLocal, Seq( wupdataMultiBridge ) )
 //      installBundles(wupdataLocal, Seq( jms11 ) )
 
 //      uninstallBundles(wupdataLocal, (1L to 65) ++ Seq(69L) )
@@ -44,7 +44,7 @@ object RunAdHoc {
 //      uninstallBundles(prod55Npr, Seq( 10L ) )
 
 //      uninstallBundles(testVdm, Seq( 9L ) )
-      installBundles(testVdm, Seq( vdm2cdf ) )
+//      installBundles(testVdm, Seq( vdm2cdf ) )
 
 
 //      installBundles(pp56Npr, Seq(
