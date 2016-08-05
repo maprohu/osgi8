@@ -33,7 +33,7 @@ object RunAdHoc {
 
       // fixing
 //      installBundles(wupdataLocal, Seq( wupdataGeoserver ) )
-      uninstallBundles(wupdataLocal, Seq( 90L ) )
+      uninstallBundles(wupdataLocal, Seq( 93L, 94 ) )
 //      uninstallBundles(wupdataLocal, Seq( 71L, 79L, 80L ) )
 //      installBundles(wupdataLocal, Seq( wupdataCore ) )
 
