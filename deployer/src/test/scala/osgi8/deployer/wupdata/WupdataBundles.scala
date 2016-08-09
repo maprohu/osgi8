@@ -44,4 +44,11 @@ trait WupdataBundles {
       wupdataVersion
     )
 
+  val wupdataBsh =
+    Bundle(
+      "emsa",
+      "wupdata-bsh-bundle",
+      wupdataVersion
+    )
+
 }
