@@ -26,14 +26,28 @@ object RunAdHoc {
 //      uninstallBundles(wupdataLocal, 1L to 65 )
 
 //      installBundles(wupdataLocal, Seq( logging, wupdataCore ) )
+//            uninstallBundles(wupdataLocal, (1L to 65) ++ Seq(69L) )
 
-      installBundles(wupdataLocal, Seq( h2gis, wupdataBsh ) )
+//      installBundles(wupdataLocal, Seq( h2gis, wupdataBsh ) )
+//      installBundles(wupdataLocal, Seq(  wupdataBsh ) )
 
 
+      // !!!  Installing wupdata after legacy
+//      installBundles(wupdataLocal, Seq( logging, wupdataCore ) )
+//      installBundles(wupdataLocal, Seq( wupdataMultiBridge ) )
+//      uninstallBundles(wupdataLocal, (1L to 65) ++ Seq(69L) )
+//      installBundles(wupdataLocal, Seq( h2gis, wupdataBsh ) )
+      // run data upload
+      // http://localhost:7002/wupdata/service/public/api/bsh/rendered/wupext/bsh/shared/BshRenderedApi/daysList
+
+
+      uninstallBundles(wupdataLocal, Seq( 78L ) )
+//      installBundles(wupdataLocal, Seq( wupdataBsh ) )
 
       // fixing
 //      installBundles(wupdataLocal, Seq( wupdataGeoserver ) )
-//      uninstallBundles(wupdataLocal, Seq( 93L, 94 ) )
+//      uninstallBundles(wupdataLocal, Seq( 97L ) )
+//      uninstallBundles(wupdataLocal, Seq( 94L, 94 ) )
 //      uninstallBundles(wupdataLocal, Seq( 71L, 79L, 80L ) )
 //      installBundles(wupdataLocal, Seq( wupdataCore ) )
 
@@ -41,7 +55,6 @@ object RunAdHoc {
 //      installBundles(wupdataLocal, Seq( wupdataMultiBridge ) )
 //      installBundles(wupdataLocal, Seq( jms11 ) )
 
-//      uninstallBundles(wupdataLocal, (1L to 65) ++ Seq(69L) )
 
 //      uninstallBundles(wupdataLocal, 1L to 65 )
 //      installBundles(pp56Npr, Seq( nprApi, nprCore ) )
