@@ -41,8 +41,8 @@ object RunAdHoc {
       // http://localhost:7002/wupdata/service/public/api/bsh/rendered/wupext/bsh/shared/BshRenderedApi/daysList
 
 
-      uninstallBundles(wupdataLocal, Seq( 78L ) )
-//      installBundles(wupdataLocal, Seq( wupdataBsh ) )
+//      uninstallBundles(wupdataLocal, Seq( 78L ) )
+      installBundles(wupdataLocal, Seq( wupdataBsh ) )
 
       // fixing
 //      installBundles(wupdataLocal, Seq( wupdataGeoserver ) )
