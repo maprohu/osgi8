@@ -13,7 +13,8 @@ object RunWupdataLegacy extends Bundles /*with WupdataBundles*/ with WupdataUrls
 
   import osgi8.deployer.RunDeployer._
 
-  val target = wupdataLocalRoot
+//  val target = wupdataLocalRoot
+  val target = wupdataTwls55Root
 
 
   def main(args: Array[String]) {
