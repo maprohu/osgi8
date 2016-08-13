@@ -194,5 +194,6 @@
     <modules>
         <module>deployer</module>
         <module>debug</module>
+        <module>testing</module>
     </modules>
 </project>
