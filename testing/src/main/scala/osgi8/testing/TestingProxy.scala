@@ -8,13 +8,12 @@ import org.littleshoot.proxy.impl.DefaultHttpProxyServer
   */
 object TestingProxy {
 
-  def run = {
+  def createProxy = {
     val mitm = new SelfSignedMitmManager
 
     DefaultHttpProxyServer.bootstrap()
       .withPort(7783)
       .withManInTheMiddle(mitm)
-      .start()
   }
 
 
