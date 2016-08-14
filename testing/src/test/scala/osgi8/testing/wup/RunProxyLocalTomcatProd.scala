@@ -3,7 +3,8 @@ package osgi8.testing.wup
 import akka.actor.ActorSystem
 import akka.http.javadsl.server.CustomRejection
 import akka.http.scaladsl.Http
-import akka.http.scaladsl.model.{StatusCodes, Uri}
+import akka.http.scaladsl.model.HttpHeader.ParsingResult.Ok
+import akka.http.scaladsl.model.{HttpHeader, HttpMethods, StatusCodes, Uri}
 import akka.http.scaladsl.server.{PathMatcher, PathMatcher0, PathMatchers, Route}
 import akka.stream.ActorMaterializer
 import io.netty.buffer.Unpooled
@@ -14,6 +15,7 @@ import osgi8.testing.TestingProxy
 
 import scala.concurrent.Await
 import scala.concurrent.duration._
+import scala.collection.immutable._
 
 /**
   * Created by martonpapp on 13/08/16.
@@ -39,8 +41,10 @@ object RunProxyLocalTomcatProd {
           onComplete(
             Http().singleRequest(
               req.copy(
-                uri = redirectTo.copy(
-                  path = segs.foldLeft(redirectTo.path)(_ / _)
+                uri = redirectTo.withPath(
+                  segs.foldLeft(redirectTo.path)(_ / _)
+                ).withQuery(
+                  req.uri.query()
                 )
               )
             )
@@ -68,8 +72,15 @@ object RunProxyLocalTomcatProd {
             originalRequest match {
               case dhr : DefaultHttpRequest =>
 
+                import scala.collection.JavaConversions._
                 val request = akka.http.scaladsl.model.HttpRequest(
-                  uri = Uri(s"http://localhost${dhr.getUri}")
+                  method = HttpMethods.getForKey(dhr.getMethod().name().toUpperCase).get,
+                  uri = Uri(s"http://localhost${dhr.getUri}"),
+                  headers = dhr.headers().names().flatMap({ headerName =>
+                    dhr.headers().getAll(headerName).map({ headerValue =>
+                      HttpHeader.parse(headerName, headerValue).asInstanceOf[Ok].header
+                    })
+                  }).to[Seq]
                 )
 
                 val result = Await.result(
@@ -78,7 +89,7 @@ object RunProxyLocalTomcatProd {
                 )
 
                 if (result.status.intValue() != NotProxiedCode) {
-                  println(originalRequest)
+//                  println(originalRequest)
 
                   val strict = Await.result(result.entity.toStrict(10.minutes), Duration.Inf)
                   val bytes = strict.data.toArray
@@ -87,6 +98,9 @@ object RunProxyLocalTomcatProd {
                     new HttpResponseStatus(result.status.intValue(), result.status.defaultMessage()),
                     Unpooled.wrappedBuffer(bytes)
                   )
+                  result.headers.foreach({ header =>
+                    dfhr.headers().add(header.name(), header.value())
+                  })
                   dfhr.headers().add(Names.CONTENT_LENGTH, bytes.length)
 
                   return dfhr
@@ -96,7 +110,7 @@ object RunProxyLocalTomcatProd {
 
               case _ =>
             }
-            println()
+//            println()
 
             null
           }
