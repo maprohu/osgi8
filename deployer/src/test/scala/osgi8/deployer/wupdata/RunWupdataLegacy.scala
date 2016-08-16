@@ -18,16 +18,23 @@ object RunWupdataLegacy extends Bundles /*with WupdataBundles*/ with WupdataUrls
 
 
   def main(args: Array[String]) {
+    runUpload
+  }
+
+  def runUpload = {
 
     perform { r => import r._
 
-      OsgiDeployer.getBundlesAll(
+      val jarsToUpload =
         Seq(
           multiApi,
           wupdataContextBridge,
           admin,
           wupdataLegacy
         )
+
+      val fileNames = OsgiDeployer.getBundlesAll(
+        jarsToUpload
       ) { files =>
         Await.result(
           runSeq(
@@ -48,7 +55,7 @@ object RunWupdataLegacy extends Bundles /*with WupdataBundles*/ with WupdataUrls
         )
       }
 
-      Future.successful()
+      Future.successful(fileNames)
     }
 
   }

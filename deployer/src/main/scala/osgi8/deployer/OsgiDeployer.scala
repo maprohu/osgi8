@@ -356,6 +356,7 @@ object OsgiDeployer {
       )
     }
 
+    bundleFiles.map(_._2)
   }
 
 }
