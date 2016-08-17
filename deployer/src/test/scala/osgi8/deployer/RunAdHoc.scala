@@ -43,11 +43,11 @@ object RunAdHoc {
 
 
 //      uninstallBundles(wupdataLocal, Seq( 84L, 90 ) )
-      uninstallBundles(wupdataLocal, Seq( 127L ) )
+//      uninstallBundles(wupdataLocal, Seq( 71L ) )
 //      uninstallBundles(wupdataTwls55, Seq( 71L ) )
 //      uninstallBundles(wupdataTwls55, Seq( 384L ) )
-//      installBundles(wupdataLocal, Seq( adminExec ) )
-//      installBundles(wupdataTwls55, Seq( wupdataCore ) )
+      installBundles(wupdataLocal, Seq( adminExec ) )
+//      installBundles(wupdataLocal, Seq( wupdataCore ) )
 //      installBundles(wupdataLocal, Seq( wupdataBsh ) )
 
       // fixing
