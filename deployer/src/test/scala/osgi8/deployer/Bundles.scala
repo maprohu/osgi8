@@ -19,6 +19,13 @@ trait Bundles {
       osgi6Version
     )
 
+  val adminExec =
+    Bundle(
+      "osgi6",
+      "osgi6-admin-exec",
+      osgi6Version
+    )
+
   val multiApi =
     Bundle(
       "osgi6",

@@ -36,13 +36,17 @@ object RunAdHoc {
 //      installBundles(wupdataTwls55, Seq( logging, wupdataCore ) )
 //      installBundles(wupdataTwls55, Seq( wupdataMultiBridge ) )
 //      uninstallBundles(wupdataTwls55, (1L to 65) ++ Seq(380L) )  // karaf + legacy
-      installBundles(wupdataLocal, Seq( h2gis, wupdataBsh ) )
+//      installBundles(wupdataLocal, Seq( h2gis, wupdataBsh ) )
 //      uninstallBundles(wupdataLocal, Seq( 75L, 76 ) )
       // run data upload
       // http://localhost:7002/wupdata/service/public/api/bsh/rendered/wupext/bsh/shared/BshRenderedApi/daysList
 
 
+//      uninstallBundles(wupdataLocal, Seq( 84L, 90 ) )
+      uninstallBundles(wupdataLocal, Seq( 127L ) )
+//      uninstallBundles(wupdataTwls55, Seq( 71L ) )
 //      uninstallBundles(wupdataTwls55, Seq( 384L ) )
+//      installBundles(wupdataLocal, Seq( adminExec ) )
 //      installBundles(wupdataTwls55, Seq( wupdataCore ) )
 //      installBundles(wupdataLocal, Seq( wupdataBsh ) )
 
