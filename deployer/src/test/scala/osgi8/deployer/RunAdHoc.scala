@@ -36,7 +36,8 @@ object RunAdHoc {
 //      installBundles(wupdataTwls55, Seq( logging, wupdataCore ) )
 //      installBundles(wupdataTwls55, Seq( wupdataMultiBridge ) )
 //      uninstallBundles(wupdataTwls55, (1L to 65) ++ Seq(380L) )  // karaf + legacy
-      installBundles(wupdataTwls55Root, Seq( h2gis, wupdataBsh ) )
+      installBundles(wupdataLocal, Seq( h2gis, wupdataBsh ) )
+//      uninstallBundles(wupdataLocal, Seq( 75L, 76 ) )
       // run data upload
       // http://localhost:7002/wupdata/service/public/api/bsh/rendered/wupext/bsh/shared/BshRenderedApi/daysList
 
