@@ -4,7 +4,7 @@ import akka.actor.ActorSystem
 import akka.http.javadsl.server.CustomRejection
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model.HttpHeader.ParsingResult.Ok
-import akka.http.scaladsl.model.{HttpHeader, HttpMethods, StatusCodes, Uri}
+import akka.http.scaladsl.model.{HttpRequest => _, HttpResponse => _, _}
 import akka.http.scaladsl.server.{PathMatcher, PathMatcher0, PathMatchers, Route}
 import akka.stream.ActorMaterializer
 import io.netty.buffer.Unpooled
@@ -65,48 +65,81 @@ object RunProxyLocalTomcatProd {
 
 
     val filterSource = new HttpFiltersSourceAdapter() {
+
+      override def getMaximumResponseBufferSizeInBytes: Int = 10 * 1024 * 1024
+      override def getMaximumRequestBufferSizeInBytes: Int = 10 * 1024 * 1024
+
       override def filterRequest(originalRequest: HttpRequest): HttpFilters = {
         new HttpFiltersAdapter(originalRequest, null) {
           override def clientToProxyRequest(httpObject: HttpObject): HttpResponse = {
 
             originalRequest match {
-              case dhr : DefaultHttpRequest =>
+              case dhr : DefaultFullHttpRequest =>
 
-                import scala.collection.JavaConversions._
-                val request = akka.http.scaladsl.model.HttpRequest(
-                  method = HttpMethods.getForKey(dhr.getMethod().name().toUpperCase).get,
-                  uri = Uri(s"http://localhost${dhr.getUri}"),
-                  headers = dhr.headers().names().flatMap({ headerName =>
-                    dhr.headers().getAll(headerName).map({ headerValue =>
-                      HttpHeader.parse(headerName, headerValue).asInstanceOf[Ok].header
-                    })
-                  }).to[Seq]
-                )
+                val method = HttpMethods.getForKey(dhr.getMethod().name().toUpperCase).get
 
-                val result = Await.result(
-                  handler(request),
-                  Duration.Inf
-                )
+                if (method != HttpMethods.CONNECT) {
 
-                if (result.status.intValue() != NotProxiedCode) {
-//                  println(originalRequest)
-
-                  val strict = Await.result(result.entity.toStrict(10.minutes), Duration.Inf)
-                  val bytes = strict.data.toArray
-                  val dfhr = new DefaultFullHttpResponse(
-                    dhr.getProtocolVersion,
-                    new HttpResponseStatus(result.status.intValue(), result.status.defaultMessage()),
-                    Unpooled.wrappedBuffer(bytes)
+                  val uri = Uri.parseHttpRequestTarget(dhr.getUri)
+                  println(method)
+                  println(uri)
+                  import scala.collection.JavaConversions._
+                  val request = akka.http.scaladsl.model.HttpRequest(
+                    //                  uri = Uri(s"http://localhost${dhr.getUri}"),
+                    method = method,
+                    uri = uri,
+                    headers = dhr.headers().names()
+                      .filter({ headerName =>
+                        headerName != akka.http.scaladsl.model.headers.`Content-Type`.name &&
+                          headerName != akka.http.scaladsl.model.headers.`Content-Length`.name
+                      })
+                      .flatMap({ headerName =>
+                        dhr.headers().getAll(headerName).map({ headerValue =>
+                          HttpHeader.parse(headerName, headerValue).asInstanceOf[Ok].header
+                        })
+                      }).to[Seq],
+                    entity = HttpEntity(
+                      contentType =
+                        Option(
+                          dhr.headers().get(akka.http.scaladsl.model.headers.`Content-Type`.name)
+                        ).map({ ct =>
+                          ContentType.parse(ct).right.get
+                        }).getOrElse(
+                          ContentTypes.`application/octet-stream`
+                        ),
+                      bytes = {
+                        val content = dhr.content()
+                        val array = Array.ofDim[Byte](content.readableBytes())
+                        content.readBytes(array)
+                        array
+                      }
+                    )
                   )
-                  result.headers.foreach({ header =>
-                    dfhr.headers().add(header.name(), header.value())
-                  })
-                  dfhr.headers().add(Names.CONTENT_LENGTH, bytes.length)
 
-                  return dfhr
+                  val result = Await.result(
+                    handler(request),
+                    Duration.Inf
+                  )
+
+                  if (result.status.intValue() != NotProxiedCode) {
+                    //                  println(originalRequest)
+
+                    val strict = Await.result(result.entity.toStrict(10.minutes), Duration.Inf)
+                    val bytes = strict.data.toArray
+                    val dfhr = new DefaultFullHttpResponse(
+                      dhr.getProtocolVersion,
+                      new HttpResponseStatus(result.status.intValue(), result.status.defaultMessage()),
+                      Unpooled.wrappedBuffer(bytes)
+                    )
+                    result.headers.foreach({ header =>
+                      dfhr.headers().add(header.name(), header.value())
+                    })
+                    dfhr.headers().add(Names.CONTENT_LENGTH, bytes.length)
+
+                    return dfhr
+                  }
+
                 }
-
-
 
               case _ =>
             }
