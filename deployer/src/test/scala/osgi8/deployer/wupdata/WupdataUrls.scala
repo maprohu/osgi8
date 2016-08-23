@@ -13,4 +13,5 @@ trait WupdataUrls {
   val wupdataLocalRoot = Uri("http://localhost:7002/wupdata")
   val wupdataLocal = wupdataLocalRoot.withPath(wupdataLocalRoot.path / "service")
 
+
 }
