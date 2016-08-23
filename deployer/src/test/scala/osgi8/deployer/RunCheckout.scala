@@ -49,13 +49,17 @@ object RunCheckout {
 //      "1.0.0"
 //    )
     run(
-      "osgi6-libs",
+      "osgi6-h2gis",
       "1.0.10"
     )
-    run(
-      "osgi6-multi-api",
-      "1.0.13"
-    )
+//    run(
+//      "osgi6-libs",
+//      "1.0.10"
+//    )
+//    run(
+//      "osgi6-multi-api",
+//      "1.0.13"
+//    )
 //    run(
 //      "scala-ext",
 //      "1.0.2"
