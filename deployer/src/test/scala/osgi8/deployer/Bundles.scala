@@ -30,7 +30,7 @@ trait Bundles {
     Bundle(
       "osgi6",
       "osgi6-multi-api",
-      osgi6Version
+      "1.0.13"
     )
 
   val multiBundle =
