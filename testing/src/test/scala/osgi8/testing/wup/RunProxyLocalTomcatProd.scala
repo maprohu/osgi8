@@ -33,7 +33,8 @@ object RunProxyLocalTomcatProd {
 
     val NotProxiedCode = 778
 
-    val redirectTo = Uri("http://localhost:9978/wupdev/data")
+//    val redirectTo = Uri("http://localhost:9978/wupdev/data")
+    val redirectTo = Uri("http://pwls55:7036/wupdata/service/public")
 
     val redirectRoute : Route =
       path("imdate_bs" / "wup_data_dir" / Segments) { segs =>
