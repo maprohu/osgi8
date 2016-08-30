@@ -46,15 +46,24 @@ object RunCheckout {
 //    )
 //    run(
 //      "osgi6-parent",
-//      "1.0.0"
+//      "1.0.3"
+//    )
+//    run(
+//      "osgi6",
+//      "1.0.10",
+//      "osgi6-pom"
+//    )
+//    run(
+//      "osgi6-h2gis",
+//      "1.0.10"
 //    )
     run(
-      "osgi6-h2gis",
+      "osgi6-logging",
       "1.0.10"
     )
 //    run(
 //      "osgi6-libs",
-//      "1.0.10"
+//      "1.0.12"
 //    )
 //    run(
 //      "osgi6-multi-api",
