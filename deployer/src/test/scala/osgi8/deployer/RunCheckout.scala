@@ -55,12 +55,16 @@ object RunCheckout {
 //    )
 //    run(
 //      "osgi6-h2gis",
-//      "1.0.10"
+//      "1.0.11"
 //    )
     run(
-      "osgi6-logging",
-      "1.0.10"
+      "osgi6-geoserver",
+      "1.0.2"
     )
+//    run(
+//      "osgi6-logging",
+//      "1.0.10"
+//    )
 //    run(
 //      "osgi6-libs",
 //      "1.0.12"
